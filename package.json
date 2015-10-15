@@ -1,0 +1,16 @@
+{
+  "name": "react-todolist",
+  "version": "1.0.0",
+  "description": "ReactJS example",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikehibm/react-todolist.git"
+  },
+
+  "private": true,
+  "dependencies": {
+    "todomvc-common": "^1.0.1",
+    "todomvc-app-css": "^2.0.1"
+  }
+}
