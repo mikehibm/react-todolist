@@ -3,10 +3,7 @@ var Actions = require('./actions.jsx');
 var ENTER_KEY = 13;
 
 var Header = React.createClass({
-  getInitialState: function() {
-    return {};
-  },
-  
+
   handleKeyDown: function (event) {
 			if (event.keyCode !== ENTER_KEY) {
 				return;
