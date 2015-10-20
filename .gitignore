@@ -2,6 +2,9 @@
 logs
 *.log
 
+dist/
+build/
+
 # Dependency directory
 node_modules
 !node_modules/director/build/director.js
