@@ -44,12 +44,28 @@ const Store = Object.assign(EventEmitter.prototype, {
         }
         Store.emitChange();
     },
+    
+    toggleAll: function(){
+        var new_value = !Store.isAllChecked();
+        items = items.map(function(item){
+          return { id: item.id, text: item.text, checked: new_value };
+        });
+        Store.emitChange();
+    },
+    
+    isAllChecked: function(){
+        return items.every(function(item){ return item.checked })
+    },
 
     getState: function () {
         var list = items.map(function(item){
           return { id: item.id, text: item.text, checked: item.checked };
         });
-        return { items: list };
+        
+        return { 
+            items: list,
+            isAllChecked: Store.isAllChecked() 
+        };
     },
 
     addChangeListener: function (callback) {
@@ -71,9 +87,7 @@ const Store = Object.assign(EventEmitter.prototype, {
     
     load: function(){
         var data = localStorage.getItem(DBNAME);
-        if (data){
-            data = JSON.parse(data);
-        }
+        data = data && JSON.parse(data);
         items = data || [];
     }
 });
@@ -94,6 +108,10 @@ Dispatcher.register(function (action) {
 
         case Constants.TOGGLE_ITEM:
             Store.toggleItem(action.id);
+            break;
+
+        case Constants.TOGGLE_ALL:
+            Store.toggleAll();
             break;
 
         default:

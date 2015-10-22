@@ -34,6 +34,12 @@ var Item = React.createClass({
 });
 
 var Main = React.createClass({
+
+  handleToggleAll: function(event){
+    Actions.toggle_all();
+    console.log("toggle_all action called.");
+  },
+
   render: function() {
     var itemLines = [];
     var items = this.props.items || [];
@@ -46,7 +52,9 @@ var Main = React.createClass({
   
     return (
       <section className="main">
-        <input className="toggle-all" type="checkbox" />
+        <input className="toggle-all" type="checkbox"
+            checked={ this.props.isAllChecked } 
+            onChange={ this.handleToggleAll } />
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
           { itemLines }

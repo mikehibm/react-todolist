@@ -23,6 +23,12 @@ const Actions = {
             actionType: Constants.TOGGLE_ITEM,
             id: id
         });
+    },
+    
+    toggle_all: function(){
+        Dispatcher.dispatch({
+            actionType: Constants.TOGGLE_ALL
+        });
     }
     
 };

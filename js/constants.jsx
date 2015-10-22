@@ -5,7 +5,6 @@ module.exports = {
 	TOGGLE_ITEM: "toggle_item",
 	CHECK_ITEM: "check_item",
 	UNCHECK_ITEM: "uncheck_item",
-	CHECK_ALL: "check_all",
-	UNCHECK_ALL: "uncheck_all",
+	TOGGLE_ALL: "toggle_all",
 	CLEAR_ALL_DONE: "clear_all_done"
 };

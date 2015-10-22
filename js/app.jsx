@@ -9,9 +9,7 @@ var Actions = require('./actions.jsx');
 
 var App = React.createClass({
   getInitialState: function() {
-    var st = Store.getState();
-    console.log("state=", st);
-    return st;
+    return Store.getState();
   },
   
   componentDidMount: function () {
@@ -26,8 +24,8 @@ var App = React.createClass({
     return (
       <div>
         <Header />
-		    <Main items={this.state.items} />
-        <Footer  items={this.state.items} />
+		    <Main items={ this.state.items } isAllChecked={ this.state.isAllChecked } />
+        <Footer  items={ this.state.items } />
       </div>
     );
   },
