@@ -53,18 +53,35 @@ const Store = Object.assign(EventEmitter.prototype, {
         Store.emitChange();
     },
     
+    getCompletedItems: function(){
+        var list = items.filter(function(item){
+          return item.checked;
+        });
+        return list;
+    },
+    
+    getInCompleteItems: function(){
+        var list = items.filter(function(item){
+          return !item.checked;
+        });
+        return list;
+    },
+    
     isAllChecked: function(){
         return items.every(function(item){ return item.checked })
     },
 
     getState: function () {
-        var list = items.map(function(item){
+        var allItems = items.map(function(item){
           return { id: item.id, text: item.text, checked: item.checked };
         });
         
+        var countTodo = Store.getInCompleteItems().length;
+        
         return { 
-            items: list,
-            isAllChecked: Store.isAllChecked() 
+            items: allItems,
+            isAllChecked: Store.isAllChecked() ,
+            countTodo: countTodo
         };
     },
 
