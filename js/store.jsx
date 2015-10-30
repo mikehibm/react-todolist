@@ -92,7 +92,8 @@ const Store = Object.assign(EventEmitter.prototype, {
         return { 
             items: allItems,
             isAllChecked: Store.isAllChecked() ,
-            countTodo: countTodo
+            countTodo: countTodo,
+            itemFilter: itemFilter
         };
     },
 

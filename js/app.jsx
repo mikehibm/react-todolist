@@ -24,8 +24,11 @@ var App = React.createClass({
     return (
       <div>
         <Header />
-		    <Main items={ this.state.items } isAllChecked={ this.state.isAllChecked } />
-        <Footer  items={ this.state.items } countTodo={ this.state.countTodo } />
+		    <Main items={ this.state.items } 
+              isAllChecked={ this.state.isAllChecked } />
+        <Footer items={ this.state.items } 
+                countTodo={ this.state.countTodo } 
+                itemFilter={ this.state.itemFilter } />
       </div>
     );
   },
