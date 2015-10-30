@@ -37,7 +37,6 @@ var Main = React.createClass({
 
   handleToggleAll: function(event){
     Actions.toggle_all();
-    console.log("toggle_all action called.");
   },
 
   render: function() {

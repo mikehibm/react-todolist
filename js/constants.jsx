@@ -3,8 +3,17 @@ module.exports = {
     EDIT_ITEM: "edit_item",
     REMOVE_ITEM: "remove_item",
 	TOGGLE_ITEM: "toggle_item",
-	CHECK_ITEM: "check_item",
-	UNCHECK_ITEM: "uncheck_item",
 	TOGGLE_ALL: "toggle_all",
-	CLEAR_ALL_DONE: "clear_all_done"
+
+	SHOW_ALL: "show_all",
+	SHOW_ACTIVE: "show_active",
+	SHOW_COMPLETED: "show_completed",
+	
+	CLEAR_COMPLETED: "show_completed",
+	
+	ItemFilter: {
+		ALL: "all",
+		ACTIVE: "active",
+		COMPLETED: "completed"
+	}
 };

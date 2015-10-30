@@ -9,6 +9,7 @@ const CHANGE_EVENT = 'change';
 const DBNAME = 'todo';
 
 var items = [];
+var itemFilter = Constants.ItemFilter.ALL;
 
 const Store = Object.assign(EventEmitter.prototype, {
     getItem: function (id) {
@@ -53,6 +54,13 @@ const Store = Object.assign(EventEmitter.prototype, {
         Store.emitChange();
     },
     
+    removeCompletedItem: function(){
+        items = items.filter(function(item){
+            return !item.checked;
+        });
+        Store.emitChange();
+    },
+    
     getCompletedItems: function(){
         var list = items.filter(function(item){
           return item.checked;
@@ -60,7 +68,7 @@ const Store = Object.assign(EventEmitter.prototype, {
         return list;
     },
     
-    getInCompleteItems: function(){
+    getIncompleteItems: function(){
         var list = items.filter(function(item){
           return !item.checked;
         });
@@ -72,11 +80,14 @@ const Store = Object.assign(EventEmitter.prototype, {
     },
 
     getState: function () {
-        var allItems = items.map(function(item){
-          return { id: item.id, text: item.text, checked: item.checked };
+        console.log("Store.getState(); itemFilter='" + itemFilter + "'");
+        var allItems = items.filter(function(item){
+            return (itemFilter == Constants.ItemFilter.ALL) 
+                    || (itemFilter == Constants.ItemFilter.ACTIVE && !item.checked)
+                    || (itemFilter == Constants.ItemFilter.COMPLETED && item.checked);
         });
         
-        var countTodo = Store.getInCompleteItems().length;
+        var countTodo = Store.getIncompleteItems().length;
         
         return { 
             items: allItems,
@@ -129,6 +140,29 @@ Dispatcher.register(function (action) {
 
         case Constants.TOGGLE_ALL:
             Store.toggleAll();
+            break;
+
+        case Constants.SHOW_ALL:
+            console.log("Store: SHOW_ALL");
+            itemFilter = Constants.ItemFilter.ALL;
+            Store.emitChange();
+            break;
+
+        case Constants.SHOW_ACTIVE:
+            console.log("Store: SHOW_ACTIVE");
+            itemFilter = Constants.ItemFilter.ACTIVE;
+            Store.emitChange();
+            break;
+
+        case Constants.SHOW_COMPLETED:
+            console.log("Store: SHOW_COMPLETED");
+            itemFilter = Constants.ItemFilter.COMPLETED;
+            Store.emitChange();
+            break;
+
+        case Constants.CLEAR_COMPLETED:
+            console.log("Store: CLEAR_COMPLETE");
+            Store.removeCompletedItem();
             break;
 
         default:

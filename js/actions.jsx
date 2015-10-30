@@ -29,6 +29,30 @@ const Actions = {
         Dispatcher.dispatch({
             actionType: Constants.TOGGLE_ALL
         });
+    },
+    
+    show_all: function(){
+        Dispatcher.dispatch({
+            actionType: Constants.SHOW_ALL
+        });
+    },
+    
+    show_active: function(){
+        Dispatcher.dispatch({
+            actionType: Constants.SHOW_ACTIVE
+        });
+    },
+    
+    show_completed: function(){
+        Dispatcher.dispatch({
+            actionType: Constants.SHOW_COMPLETED
+        });
+    },
+
+    clear_completed: function(){
+        Dispatcher.dispatch({
+            actionType: Constants.CLEAR_COMPLETED
+        });
     }
     
 };
