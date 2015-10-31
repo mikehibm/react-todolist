@@ -13,7 +13,6 @@ var Header = React.createClass({
 			var val = event.target.value.trim();
 			if (val) {
         Actions.add_item(val);
-        console.log("added " + val);
 				event.target.value = '';
 			}
 	},

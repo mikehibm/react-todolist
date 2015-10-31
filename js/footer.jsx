@@ -22,7 +22,6 @@ var Footer = React.createClass({
   },
   
   handleClearCompleted: function(){
-    console.log("handleClearCompleted");
     Actions.clear_completed();
   },
   

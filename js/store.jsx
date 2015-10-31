@@ -76,7 +76,6 @@ const Store = Object.assign(EventEmitter.prototype, {
     },
 
     getState: function () {
-        console.log("Store.getState(); itemFilter='" + itemFilter + "'");
         var allItems = items.filter(function(item){
             return (itemFilter == Constants.ItemFilter.ALL) 
                     || (itemFilter == Constants.ItemFilter.ACTIVE && !item.checked)
@@ -142,25 +141,21 @@ Dispatcher.register(function (action) {
             break;
 
         case Constants.SHOW_ALL:
-            console.log("Store: SHOW_ALL");
             itemFilter = Constants.ItemFilter.ALL;
             Store.emitChange();
             break;
 
         case Constants.SHOW_ACTIVE:
-            console.log("Store: SHOW_ACTIVE");
             itemFilter = Constants.ItemFilter.ACTIVE;
             Store.emitChange();
             break;
 
         case Constants.SHOW_COMPLETED:
-            console.log("Store: SHOW_COMPLETED");
             itemFilter = Constants.ItemFilter.COMPLETED;
             Store.emitChange();
             break;
 
         case Constants.CLEAR_COMPLETED:
-            console.log("Store: CLEAR_COMPLETE");
             Store.removeCompletedItem();
             break;
 
