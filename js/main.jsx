@@ -1,4 +1,5 @@
 const React = require('react'),
+      ReactDOM = require('react-dom'),
       Actions = require('./actions.jsx'), 
       Constants = require('./constants.jsx');
 
@@ -9,18 +10,23 @@ var Item = React.createClass({
     return { isEditing: false };
   },
   
+  componentDidUpdate: function (prevProps, prevState) {
+			if (!prevState.isEditing && this.state.isEditing) {
+				var editor = ReactDOM.findDOMNode(this.refs.editor);
+				editor.focus();
+				editor.setSelectionRange(editor.value.length, editor.value.length); //Locate the cursor to the end.
+			}
+	},
+    
   handleChangeChecked: function(event){
-    //event.preventDefault();
     var id = this.props.id;
     Actions.toggle_item(id);
-    console.log("Toggled: ", id);
   },
   
   handleRemoveClick: function(event){
     event.preventDefault();
     var id = this.props.id;
     Actions.remove_item(id);
-    console.log("Item removed: ", id);
   },
   
   handleDoubleClick: function(){
