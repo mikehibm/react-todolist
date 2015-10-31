@@ -15,5 +15,8 @@ module.exports = {
 		ALL: "all",
 		ACTIVE: "active",
 		COMPLETED: "completed"
-	}
+	},
+	
+	ENTER_KEY_CODE: 13,
+	ESCAPE_KEY_CODE: 27
 };

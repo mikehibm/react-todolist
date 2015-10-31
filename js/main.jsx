@@ -1,7 +1,13 @@
-var React = require('react');
-var Actions = require('./actions.jsx'); 
+const React = require('react'),
+      Actions = require('./actions.jsx'), 
+      Constants = require('./constants.jsx');
+
 
 var Item = React.createClass({
+
+  getInitialState: function(){
+    return { isEditing: false };
+  },
   
   handleChangeChecked: function(event){
     //event.preventDefault();
@@ -16,18 +22,55 @@ var Item = React.createClass({
     Actions.remove_item(id);
     console.log("Item removed: ", id);
   },
+  
+  handleDoubleClick: function(){
+    this.setState({ isEditing: true });
+  },
+  
+  updateText: function(){
+    var newValue = this.refs.editor.value.trim();
+    if (newValue){
+      Actions.edit_item(this.props.id, newValue);
+    } else {
+      Actions.remove_item(this.props.id);
+    }
+    this.finishEditing();
+  },
+  
+   handleKeyDown: function(event) {
+    if (event.keyCode === Constants.ENTER_KEY_CODE) {
+      this.updateText();
+    } else if (event.keyCode === Constants.ESCAPE_KEY_CODE){
+      this.finishEditing();
+    }
+  },
+  
+  finishEditing: function(){
+    this.refs.editor.value = '';
+    this.setState( { isEditing: false } );
+  },
 
   render: function() {
-      var classNameForCompleted = this.props.checked ? "completed" : "";
+      var className = (this.props.checked ? 'completed' : '')
+                    + (this.state.isEditing ? ' editing' : '');
       return (
-        <li ref="itemLine" className={ classNameForCompleted } >
+        <li className={ className } >
           <div className="view">
             <input className="toggle" type="checkbox" 
                 checked={ this.props.checked } 
                 onChange={ this.handleChangeChecked } />
-            <label>{ this.props.text }</label>
+            <label onDoubleClick={ this.handleDoubleClick }>{ this.props.text }</label>
             <button className="destroy" onClick={ this.handleRemoveClick }></button>
           </div>
+          { this.state.isEditing ? 
+            <input ref='editor'
+              className='edit'
+              onBlur={ this.updateText }
+              onKeyDown={ this.handleKeyDown }
+              defaultValue={ this.props.text }
+              autoFocus={ true }
+            /> 
+            : undefined }
         </li>
       );
   }

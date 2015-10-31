@@ -25,9 +25,7 @@ const Store = Object.assign(EventEmitter.prototype, {
 
     editItem: function(id, text){
         var item = Store.getItem(id);
-        if (item){
-            item.text = text;
-        }
+        item && (item.text = text);
         Store.emitChange();
     },
 
@@ -40,9 +38,7 @@ const Store = Object.assign(EventEmitter.prototype, {
 
     toggleItem: function(id){
         var item = Store.getItem(id);
-        if (item){
-            item.checked = !item.checked;
-        }
+        item && (item.checked = !item.checked);
         Store.emitChange();
     },
     
@@ -166,6 +162,10 @@ Dispatcher.register(function (action) {
         case Constants.CLEAR_COMPLETED:
             console.log("Store: CLEAR_COMPLETE");
             Store.removeCompletedItem();
+            break;
+
+        case Constants.EDIT_ITEM:
+            Store.editItem(action.id, action.text);
             break;
 
         default:

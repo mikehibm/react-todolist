@@ -11,6 +11,14 @@ const Actions = {
         });
     },
     
+    edit_item: function(id, text){
+        Dispatcher.dispatch({
+            actionType: Constants.EDIT_ITEM,
+            id: id,
+            text: text
+        });
+    },
+    
     remove_item: function (id) {
         Dispatcher.dispatch({
             actionType: Constants.REMOVE_ITEM,
