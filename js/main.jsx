@@ -29,7 +29,8 @@ var Item = React.createClass({
     Actions.remove_item(id);
   },
   
-  handleDoubleClick: function(){
+  handleDoubleClick: function(event){
+    event.preventDefault();
     this.setState({ isEditing: true });
   },
   
