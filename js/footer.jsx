@@ -10,17 +10,14 @@ var Footer = React.createClass({
   },
   
   handleShowAll: function(){
-    console.log("handleShowAll");
     Actions.show_all();
   },
   
   handleShowActive: function(){
-    console.log("handleShowActive");
     Actions.show_active();
   },
   
   handleShowCompleted: function(){
-    console.log("handleShowCompleted");
     Actions.show_completed();
   },
   
@@ -33,6 +30,9 @@ var Footer = React.createClass({
     var selectedAll = this.props.itemFilter == Constants.ItemFilter.ALL ? "selected" : undefined;
     var selectedActive = this.props.itemFilter == Constants.ItemFilter.ACTIVE ? "selected" : undefined;
     var selectedCompleted = this.props.itemFilter == Constants.ItemFilter.COMPLETED ? "selected" : undefined;
+    var clearCompletedButton = this.props.hasCompleted ? 
+                                <button className="clear-completed" onClick={ this.handleClearCompleted }>Clear completed</button>
+                                : undefined;
   
     return (
       <footer className="footer">
@@ -48,7 +48,7 @@ var Footer = React.createClass({
             <a href="#/completed" className={ selectedCompleted } onClick={ this.handleShowCompleted }>Completed</a>
           </li>
         </ul>
-        <button className="clear-completed" onClick={ this.handleClearCompleted }>Clear completed</button>
+        { clearCompletedButton }
       </footer>
     );
   }

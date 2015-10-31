@@ -9,7 +9,7 @@ module.exports = {
 	SHOW_ACTIVE: "show_active",
 	SHOW_COMPLETED: "show_completed",
 	
-	CLEAR_COMPLETED: "show_completed",
+	CLEAR_COMPLETED: "clear_completed",
 	
 	ItemFilter: {
 		ALL: "all",

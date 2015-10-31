@@ -88,12 +88,14 @@ const Store = Object.assign(EventEmitter.prototype, {
         });
         
         var countTodo = Store.getIncompleteItems().length;
+        var countCompleted = Store.getCompletedItems().length;
         
         return { 
             items: allItems,
             isAllChecked: Store.isAllChecked() ,
             countTodo: countTodo,
-            itemFilter: itemFilter
+            itemFilter: itemFilter,
+            hasCompleted: (countCompleted > 0)
         };
     },
 

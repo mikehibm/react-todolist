@@ -28,7 +28,8 @@ var App = React.createClass({
               isAllChecked={ this.state.isAllChecked } />
         <Footer items={ this.state.items } 
                 countTodo={ this.state.countTodo } 
-                itemFilter={ this.state.itemFilter } />
+                itemFilter={ this.state.itemFilter }
+                hasCompleted={ this.state.hasCompleted } />
       </div>
     );
   },
