@@ -15,6 +15,7 @@
   "devDependencies": {
     "babelify": "^6.3.0",
     "browserify": "^11.2.0",
+    "director": "^1.2.8",
     "flux": "^2.1.1",
     "gulp": "^3.9.0",
     "gulp-webserver": "^0.9.1",

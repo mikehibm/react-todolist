@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Router = require('director').Router;
 
 var Header = require('./header.jsx');
 var Main = require('./main.jsx');
@@ -39,7 +40,20 @@ var App = React.createClass({
   }  
 });
 
-// app クラスを描画
+
+//Define routes.
+var router = Router({
+  '/': function(){ Actions.show_all(); },
+  '/active': function(){ Actions.show_active(); },
+  '/completed': function(){ Actions.show_completed(); }
+})
+.configure({
+  'notfound': function(){ Actions.show_all(); },
+  'html5history': false
+})
+.init();
+
+
 ReactDOM.render(
   <App />,
   document.getElementsByClassName('todoapp')[0]

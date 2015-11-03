@@ -76,7 +76,7 @@ const Store = Object.assign(EventEmitter.prototype, {
     },
 
     getState: function () {
-        var allItems = items.filter(function(item){
+        var filtered_items = items.filter(function(item){
             return (itemFilter == Constants.ItemFilter.ALL) 
                     || (itemFilter == Constants.ItemFilter.ACTIVE && !item.checked)
                     || (itemFilter == Constants.ItemFilter.COMPLETED && item.checked);
@@ -86,7 +86,7 @@ const Store = Object.assign(EventEmitter.prototype, {
         var countCompleted = Store.getCompletedItems().length;
         
         return { 
-            items: allItems,
+            items: filtered_items,
             isAllChecked: Store.isAllChecked() ,
             countTodo: countTodo,
             itemFilter: itemFilter,

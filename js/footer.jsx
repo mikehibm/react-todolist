@@ -9,18 +9,6 @@ var Footer = React.createClass({
     return {};
   },
   
-  handleShowAll: function(){
-    Actions.show_all();
-  },
-  
-  handleShowActive: function(){
-    Actions.show_active();
-  },
-  
-  handleShowCompleted: function(){
-    Actions.show_completed();
-  },
-  
   handleClearCompleted: function(){
     Actions.clear_completed();
   },
@@ -38,13 +26,13 @@ var Footer = React.createClass({
         <span className="todo-count">{ this.props.countTodo } { Utils.pluralize(this.props.countTodo, 'item') } left</span>
         <ul className="filters">
           <li>
-            <a href="#/" className={ selectedAll } onClick={ this.handleShowAll }>All</a>
+            <a href="#/" className={ selectedAll }>All</a>
           </li>
           <li>
-            <a href="#/active" className={ selectedActive } onClick={ this.handleShowActive }>Active</a>
+            <a href="#/active" className={ selectedActive }>Active</a>
           </li>
           <li>
-            <a href="#/completed" className={ selectedCompleted } onClick={ this.handleShowCompleted }>Completed</a>
+            <a href="#/completed" className={ selectedCompleted }>Completed</a>
           </li>
         </ul>
         { clearCompletedButton }
