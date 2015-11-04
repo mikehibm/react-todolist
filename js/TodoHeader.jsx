@@ -1,18 +1,18 @@
-var React = require('react'); 
-var Actions = require('./actions.jsx'); 
-var ENTER_KEY = 13;
+const React = require('react'), 
+      Actions = require('./actions.jsx'), 
+      Constants = require('./constants.jsx');
 
-var Header = React.createClass({
+const TodoHeader = React.createClass({
 
   handleKeyDown: function (event) {
-			if (event.keyCode !== ENTER_KEY) {
+			if (event.keyCode !== Constants.ENTER_KEY_CODE) {
 				return;
 			}
 			event.preventDefault();
 
 			var val = event.target.value.trim();
 			if (val) {
-        Actions.add_item(val);
+        Actions.addItem(val);
 				event.target.value = '';
 			}
 	},
@@ -30,4 +30,4 @@ var Header = React.createClass({
   }
 });
 
-module.exports = Header;
+module.exports = TodoHeader;

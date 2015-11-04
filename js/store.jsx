@@ -1,12 +1,10 @@
-
-const EventEmitter = require('events').EventEmitter;
-
-const Dispatcher = require('./dispatcher.jsx'),
+const EventEmitter = require('events').EventEmitter,
+      Dispatcher = require('./dispatcher.jsx'),
       Constants = require('./constants.jsx'),
       Utils = require('./utils.jsx');
 
-const CHANGE_EVENT = 'change';
-const DBNAME = 'todo';
+const CHANGE_EVENT = 'change',
+      DBNAME = 'todo';
 
 var items = [];
 var itemFilter = Constants.ItemFilter.ALL;
@@ -99,7 +97,7 @@ const Store = Object.assign(EventEmitter.prototype, {
     },
 
     removeChangeListener: function (callback) {
-        this.on(CHANGE_EVENT, callback);
+        this.off(CHANGE_EVENT, callback);
     },
 
     emitChange: function () {

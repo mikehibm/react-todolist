@@ -1,14 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Router = require('director').Router;
+const React = require('react'),
+      ReactDOM = require('react-dom'),
+      Router = require('director').Router,
+      Store = require('./store.jsx'),
+      Actions = require('./actions.jsx'),
+      TodoHeader = require('./TodoHeader.jsx'),
+      TodoItemList = require('./TodoItemList.jsx'),
+      TodoFooter = require('./TodoFooter.jsx');
 
-var Header = require('./header.jsx');
-var Main = require('./main.jsx');
-var Footer = require('./footer.jsx');
-var Store = require('./store.jsx');
-var Actions = require('./actions.jsx');
-
-var App = React.createClass({
+const App = React.createClass({
   getInitialState: function() {
     return Store.getState();
   },
@@ -24,10 +23,10 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Header />
-		    <Main items={ this.state.items } 
+        <TodoHeader />
+		    <TodoItemList items={ this.state.items } 
               isAllChecked={ this.state.isAllChecked } />
-        <Footer items={ this.state.items } 
+        <TodoFooter items={ this.state.items } 
                 countTodo={ this.state.countTodo } 
                 itemFilter={ this.state.itemFilter }
                 hasCompleted={ this.state.hasCompleted } />
@@ -43,12 +42,12 @@ var App = React.createClass({
 
 //Define routes.
 var router = Router({
-  '/': function(){ Actions.show_all(); },
-  '/active': function(){ Actions.show_active(); },
-  '/completed': function(){ Actions.show_completed(); }
+  '/': function(){ Actions.showAll(); },
+  '/active': function(){ Actions.showActive(); },
+  '/completed': function(){ Actions.showCompleted(); }
 })
 .configure({
-  'notfound': function(){ Actions.show_all(); },
+  'notfound': function(){ Actions.showAll(); },
   'html5history': false
 })
 .init();

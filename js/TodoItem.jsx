@@ -4,7 +4,7 @@ const React = require('react'),
       Constants = require('./constants.jsx');
 
 
-var Item = React.createClass({
+const TodoItem = React.createClass({
 
   getInitialState: function(){
     return { isEditing: false };
@@ -20,13 +20,13 @@ var Item = React.createClass({
     
   handleChangeChecked: function(event){
     var id = this.props.id;
-    Actions.toggle_item(id);
+    Actions.toggleItem(id);
   },
   
   handleRemoveClick: function(event){
     event.preventDefault();
     var id = this.props.id;
-    Actions.remove_item(id);
+    Actions.removeItem(id);
   },
   
   handleDoubleClick: function(event){
@@ -37,9 +37,9 @@ var Item = React.createClass({
   updateText: function(){
     var newValue = this.refs.editor.value.trim();
     if (newValue){
-      Actions.edit_item(this.props.id, newValue);
+      Actions.editItem(this.props.id, newValue);
     } else {
-      Actions.remove_item(this.props.id);
+      Actions.removeItem(this.props.id);
     }
     this.finishEditing();
   },
@@ -83,34 +83,4 @@ var Item = React.createClass({
   }
 });
 
-var Main = React.createClass({
-
-  handleToggleAll: function(event){
-    Actions.toggle_all();
-  },
-
-  render: function() {
-    var itemLines = [];
-    var items = this.props.items || [];
-    
-    itemLines = items.map(function(item){
-      return (
-        <Item key={ item.id } id={ item.id } text={ item.text} checked={ item.checked } />
-      );
-    });
-  
-    return (
-      <section className="main">
-        <input className="toggle-all" type="checkbox"
-            checked={ this.props.isAllChecked } 
-            onChange={ this.handleToggleAll } />
-        <label htmlFor="toggle-all">Mark all as complete</label>
-        <ul className="todo-list">
-          { itemLines }
-        </ul>
-      </section>
-    );
-  }
-});
-
-module.exports = Main;
+module.exports = TodoItem;

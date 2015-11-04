@@ -1,16 +1,16 @@
-var React = require('react');
-var Utils = require('./utils.jsx');
-var Actions = require('./actions.jsx'); 
-var Constants = require('./constants.jsx');
+const React = require('react'),
+      Utils = require('./utils.jsx'),
+      Actions = require('./actions.jsx'), 
+      Constants = require('./constants.jsx');
 
 
-var Footer = React.createClass({
+const TodoFooter = React.createClass({
   getInitialState: function() {
     return {};
   },
   
   handleClearCompleted: function(){
-    Actions.clear_completed();
+    Actions.clearCompleted();
   },
   
   render: function() {
@@ -41,6 +41,6 @@ var Footer = React.createClass({
   }
 });
 
-module.exports = Footer;
+module.exports = TodoFooter;
 
 
