@@ -157,10 +157,6 @@ Dispatcher.register(function (action) {
             Store.removeCompletedItem();
             break;
 
-        case Constants.EDIT_ITEM:
-            Store.editItem(action.id, action.text);
-            break;
-
         default:
             // no op
     };
